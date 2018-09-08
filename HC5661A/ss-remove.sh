@@ -19,7 +19,8 @@ opkg remove shadowsocks-libev
 
 ###############firewall###############
 iptables -t nat -F shadowsocks
-iptables -t nat -D PREROUTING -s 192.168.12.0/24 -j shadowsocks
-iptables -t nat -D PREROUTING -s 192.168.0.0/16 -j shadowsocks
+#iptables -t nat -D PREROUTING -s 192.168.12.0/24 -j shadowsocks
+#iptables -t nat -D PREROUTING -s 192.168.0.0/16 -j shadowsocks
+iptables -t nat -D PREROUTING -m set --match-set gfwlist dst -j shadowsocks
 
 rm /etc/firewall.d/ss-iptable
