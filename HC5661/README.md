@@ -6,7 +6,7 @@
 	curl -k https://raw.githubusercontent.com/orzroa/highwifi/master/HC5661/ss-remove.sh  -o ss-remove.sh
 
 ## c)安装
-	./ss-install.sh  [server_ip] [server_port] [password]
+	sh ss-install.sh  [server_ip] [server_port] [password]
 
 ## d)卸载
-	./ss-remove.sh
+	sh ss-remove.sh

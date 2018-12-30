@@ -3,6 +3,25 @@ if [ $# -ne 3 ]; then
   exit 1
 fi
 
+###############firewall###############
+cat>/usr/bin/ss-iptable<<EOF
+iptables -t nat -N shadowsocks
+iptables -t nat -A shadowsocks -p tcp -j REDIRECT --to-ports 1081
+iptables -t nat -A shadowsocks -p udp -j REDIRECT --to-ports 1081
+iptables -t nat -A shadowsocks -p icmp -j REDIRECT --to-ports 1081
+
+ipset create gfwlist hash:ip
+iptables -t nat -A PREROUTING -m set --match-set gfwlist dst -j shadowsocks
+EOF
+
+chmod a+x /usr/bin/ss-iptable
+/usr/bin/ss-iptable
+
+if [ `grep ss-iptable /etc/rc.local|wc -l` -eq 0 ]; then
+  sed -i 's/exit/\/usr\/bin\/ss-iptable\nexit/g' /etc/rc.local
+  echo "ss-iptables added into rc.local"
+fi
+
 ###############dnsmasq###############
 opkg remove dnsmasq
 opkg install dnsmasq-full
@@ -76,22 +95,3 @@ EOF
 chmod a+x /etc/init.d/shadowsocks-libev
 /etc/init.d/shadowsocks-libev enable
 /etc/init.d/shadowsocks-libev start
-
-###############firewall###############
-cat>/usr/bin/ss-iptable<<EOF
-iptables -t nat -N shadowsocks
-iptables -t nat -A shadowsocks -p tcp -j REDIRECT --to-ports 1081
-iptables -t nat -A shadowsocks -p udp -j REDIRECT --to-ports 1081
-iptables -t nat -A shadowsocks -p icmp -j REDIRECT --to-ports 1081
-
-ipset create gfwlist hash:ip
-iptables -t nat -A PREROUTING -m set --match-set gfwlist dst -j shadowsocks
-EOF
-
-chmod a+x /usr/bin/ss-iptable
-/usr/bin/ss-iptable
-
-if [ `grep ss-iptable /etc/rc.local|wc -l` -eq 0 ]; then
-  sed -i 's/exit/\/usr\/bin\/ss-iptable\nexit/g' /etc/rc.local
-  echo "ss-iptables added into rc.local"
-fi
