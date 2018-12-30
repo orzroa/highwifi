@@ -1,4 +1,4 @@
-if [ $# -ne 4 ]; then
+if [ $# -ne 3 ]; then
   echo "Usage: ss-install.sh [server_ip] [server_port] [password]"
   exit 1
 fi
@@ -26,11 +26,7 @@ curl -k https://raw.githubusercontent.com/orzroa/highwifi/master/HC5661/speed.co
 #自动会带上config，但是server/rules是没什么用的
 
 opkg update
-opkg install shadowsocks-libev-config
-opkg install shadowsocks-libev-ss-local
-opkg install shadowsocks-libev-ss-redir
-opkg install shadowsocks-libev-ss-rules
-opkg install shadowsocks-libev-ss-tunnel
+opkg install shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-tunnel
 
 cat>/etc/config/shadowsocks-libev<<EOF
 config ss_local

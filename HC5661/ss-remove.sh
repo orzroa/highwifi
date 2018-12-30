@@ -18,11 +18,7 @@ rm /etc/dnsmasq.d/speed.conf
 /etc/init.d/shadowsocks-libev disable
 rm /etc/config/shadowsocks-libev
 
-opkg remove shadowsocks-libev-config
-opkg remove shadowsocks-libev-ss-local
-opkg remove shadowsocks-libev-ss-redir
-opkg remove shadowsocks-libev-ss-rules
-opkg remove shadowsocks-libev-ss-tunnel
+opkg remove shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-tunnel shadowsocks-libev-config
 
 ###############firewall###############
 iptables -t nat -F shadowsocks
