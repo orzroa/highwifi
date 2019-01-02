@@ -1,0 +1,23 @@
+#  This file is part of shadowsocks-go.
+#
+#  Shadowsocks-go is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 3 of the License, or
+#  (at your option) any later version.
+
+#  get exec File from https://github.com/shadowsocks/shadowsocks-go/blob/master/deb/etc/init.d/shadowsocks
+#  Put this file into /lib/systemd/system
+
+[Unit]
+Description=Shadowsocks-go Default Server Service
+Documentation=man:shadowsocks-go(8)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/etc/init.d/shadowsocks start
+ExecStop=/etc/init.d/shadowsocks stop
+ExecReload=/etc/init.d/shadowsocks reload
+
+[Install]
+WantedBy=multi-user.target
