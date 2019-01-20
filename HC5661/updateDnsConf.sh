@@ -1,6 +1,6 @@
 #!/bin/sh
 
-$tempdir="/etc/dnsmask.d"
+tempdir="/etc/dnsmask.d"
 mkdir "$tempdir"
 cd "$tempdir"
 
@@ -28,4 +28,3 @@ if [ "$oldMD5" != "$newMD5" ]; then
     echo 'File updated!'
   fi
 fi
-
