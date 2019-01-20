@@ -1,10 +1,9 @@
 #!/bin/sh
 
-cd /etc/dnsmasq.d
-mkdir temp
-cd temp
+mkdir /var/dnsmasq.d
+cd /var/dnsmasq.d
 
-oldMD5=`cat /etc/dnsmasq.d/conf.md5`
+oldMD5=`cat /var/dnsmasq.d/conf.md5`
 echo "oldMD5=$oldMD5"
 newMD5=`curl -s https://raw.githubusercontent.com/orzroa/gfwlist2dnsmasq/master/conf.md5`
 echo "newMD5=$newMD5"
@@ -22,8 +21,10 @@ if [ "$oldMD5" != "$newMD5" ]; then
   if [ "$dldMD5" != "$newMD5" ]; then
     echo 'Downloaded file md5 check error!'
   else
-    mv -f *.conf ../
+    mv -f *.conf /etc/dnsmasq.d/
+    echo "$dldMD5" >/var/dnsmasq.d/conf.md5
     /etc/init.d/dnsmasq restart
     echo 'File updated!'
   fi
 fi
+
