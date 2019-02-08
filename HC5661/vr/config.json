@@ -1,0 +1,59 @@
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray_access.log",
+    "error":  "/var/log/v2ray_error.log"
+  },
+  "inbounds": [
+    {
+      "port": 1081,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "network": "tcp,udp",
+        "followRedirect": true
+      }
+    },
+    {
+      "protocol": "dokodemo-door",
+      "port": 5353,
+      "listen": "127.0.0.1",
+      "settings": {
+        "address": "8.8.8.8",
+        "port": 53,
+        "network": "udp",
+        "timeout": 0
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "",
+            "port": 443,
+            "users": [
+              {
+                "id": "",
+                "alterId": 64
+              }
+            ]
+          }
+        ]
+      },
+      "mux": {"enabled": true},
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "path": ""
+        },
+        "sockopt": {
+          "mark": 255
+        }
+      }
+    }
+  ]
+}
+
