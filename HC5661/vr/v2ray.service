@@ -1,0 +1,26 @@
+#!/bin/sh /etc/rc.common
+# "new(er)" style init script
+# Look at /lib/functions/service.sh on a running system for explanations of what other SERVICE_
+# options you can use, and when you might want them.
+
+START=99
+ROOT=/opt/v2ray
+APP=v2ray_sf
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
+PID_FILE=/var/run/$APP.pid
+
+start() {
+  # limit vsz to 32mb (you can change it according to your device)
+  # ulimit -v 32678
+  # service_start $ROOT/v2ray
+  # Only use v2ray via pb config without v2ctl on low flash machine
+  service_start $ROOT/$APP -config=$ROOT/config.pb
+  echo $! > $PID_FILE
+}
+
+stop() {
+  pid=`cat $PID_FILE`
+  kill $pid
+}
+
