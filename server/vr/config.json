@@ -34,7 +34,7 @@
         "outboundTag": "blocked"
       },{
         "type": "field",
-        "outboundTag": "block",
+        "outboundTag": "blocked",
         "protocol": ["bittorrent"]
       }
     ]
