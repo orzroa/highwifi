@@ -6,6 +6,20 @@
   },
   "inbounds": [
     {
+      "listen": "127.0.0.1",
+      "port": 1080,
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "listen": "127.0.0.1",
       "port": 1081,
       "protocol": "dokodemo-door",
       "settings": {
