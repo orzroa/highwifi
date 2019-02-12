@@ -12,7 +12,7 @@ curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.co
 chmod +x v2ray v2ctl v2ray.service
 cp v2ray.service /etc/systemd/system/v2ray.service
 systemctl enable v2ray
-systemctl start v2ray
+systemctl restart v2ray
 systemctl status v2ray
 netstat -anp|grep v2ray
 
@@ -38,7 +38,7 @@ EOF
 semanage permissive -a dnsmasq_t
 
 systemctl enable dnsmasq
-systemctl start dnsmasq
+systemctl restart dnsmasq
 systemctl status dnsmasq
 
 sed -i 's/\[main\]/\[main\]\ndns=none/g' /etc/NetworkManager/NetworkManager.conf
