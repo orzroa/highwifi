@@ -6,7 +6,6 @@
   },
   "inbounds": [
     {
-      "listen": "127.0.0.1",
       "port": 1080,
       "protocol": "socks",
       "sniffing": {
@@ -15,6 +14,7 @@
       },
       "settings": {
         "auth": "noauth",
+        "ip": "todo",
         "udp": true
       }
     },
@@ -45,11 +45,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "",
+            "address": "todo",
             "port": 443,
             "users": [
               {
-                "id": "",
+                "id": "todo",
                 "alterId": 64
               }
             ]
@@ -61,7 +61,7 @@
         "network": "ws",
         "security": "tls",
         "wsSettings": {
-          "path": ""
+          "path": "todo"
         },
         "sockopt": {
           "mark": 255
