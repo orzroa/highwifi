@@ -1,9 +1,8 @@
 {
   "log": {
+    "loglevel": "warning",
     "access": "/var/log/v2ray_access.log",
-    "error": "/var/log/v2ray_access.log",
-
-    "loglevel": "warning"
+    "error": "/var/log/v2ray_error.log"
   },
   "inbounds": [{
     "protocol": "dokodemo-door",
