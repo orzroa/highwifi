@@ -26,12 +26,11 @@ ipset list
 # dnsmasq
 yum install dnsmasq bind-utils -y
 cd /etc/dnsmasq.d/
-curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.com/orzroa/gfwlist2dnsmasq/master/{dnsmasq_gfwlist_ipset.conf,speed.conf}
+curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.com/orzroa/gfwlist2dnsmasq/master/{dnsmasq_gfwlist_ipset.conf}
 
 cat>>/etc/dnsmasq.conf<<EOF
 
-server=192.168.255.240
-server=192.168.255.241
+server=192.168.60.95
 listen-address=127.0.0.1
 EOF
 

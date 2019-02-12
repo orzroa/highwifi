@@ -12,17 +12,6 @@
       "network": "tcp,udp",
       "followRedirect": true
     }
-  },
-  {
-    "protocol": "dokodemo-door",
-    "listen": "127.0.0.1",
-    "port": 5353,
-    "settings": {
-      "address": "8.8.8.8",
-      "port": 53,
-      "network": "udp",
-      "timeout": 0
-    }
   }],
   "outbounds": [{
     "protocol": "socks",
