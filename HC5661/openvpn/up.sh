@@ -12,3 +12,4 @@ iptables -t nat -I POSTROUTING -s 192.168.211.0/24 -d 192.168.41.0/24 -o tun0 -j
 iptables -t nat -I POSTROUTING -s 192.168.211.0/24 -d 192.168.50.0/24 -o tun0 -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 192.168.211.0/24 -d 192.168.60.0/24 -o tun0 -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 192.168.211.0/24 -d 192.168.255.0/24 -o tun0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 192.168.211.0/24 -d 10.8.7.0/24      -o tun0 -j MASQUERADE
