@@ -68,6 +68,14 @@
         }
       }
     }/*,{
+      "protocol": "socks",
+      "settings": {
+        "servers": [{
+          "address": "todo",
+          "port": 1080
+        }]
+      }
+    },{
       "protocol": "freedom",
       "settings": {},
       "tag": "direct" 
