@@ -29,7 +29,7 @@ cat>>/etc/hosts<<EOF
 EOF
 
 opkg remove dnsmasq
-opkg install dnsmasq-full ipset
+opkg install dnsmasq-full ipset curl
 
 if [ `grep conf-dir /etc/dnsmasq.conf|wc -l` -eq 0 ]; then
   echo "conf-dir=/etc/dnsmasq.d">>/etc/dnsmasq.conf
@@ -38,7 +38,7 @@ fi
 
 mkdir /etc/dnsmasq.d
 curl -k https://raw.githubusercontent.com/orzroa/gfwlist2dnsmasq/master/dnsmasq_gfwlist_ipset.conf -o /etc/dnsmasq.d/dnsmasq_gfwlist_ipset.conf
-curl -k https://raw.githubusercontent.com/orzroa/highwifi/master/HC5661/speed.conf -o /etc/dnsmasq.d/speed.conf
+curl -k https://raw.githubusercontent.com/orzroa/highwifi/master/HC5661/dnsmasq_gfwlist_server.conf -o /etc/dnsmasq.d/dnsmasq_gfwlist_server.conf
 
 /etc/init.d/dnsmasq restart
 
