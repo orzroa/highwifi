@@ -12,6 +12,7 @@ iptables -t nat -A shadowsocks -p icmp -j REDIRECT --to-ports 1081
 
 ipset create gfwlist hash:ip
 iptables -t nat -A PREROUTING -m set --match-set gfwlist dst -j shadowsocks
+iptables -t nat -A OUTPUT -m set --match-set gfwlist dst -j shadowsocks
 EOF
 
 chmod a+x /usr/bin/ss-iptable
@@ -23,8 +24,12 @@ if [ `grep ss-iptable /etc/rc.local|wc -l` -eq 0 ]; then
 fi
 
 ###############dnsmasq###############
+cat>>/etc/hosts<<EOF
+148.251.78.235  downloads.openwrt.org
+EOF
+
 opkg remove dnsmasq
-opkg install dnsmasq-full
+opkg install dnsmasq-full ipset
 
 if [ `grep conf-dir /etc/dnsmasq.conf|wc -l` -eq 0 ]; then
   echo "conf-dir=/etc/dnsmasq.d">>/etc/dnsmasq.conf
