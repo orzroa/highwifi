@@ -1,3 +1,5 @@
+#!/bin/bash
+
 iptables -t nat -N shadowsocks
 iptables -t nat -A shadowsocks -p tcp -j REDIRECT --to-ports 1081
 iptables -t nat -A shadowsocks -p udp -j REDIRECT --to-ports 1081
