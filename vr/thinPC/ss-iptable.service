@@ -1,0 +1,12 @@
+[Unit]
+Description=ss-iptable Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ss-iptable
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
