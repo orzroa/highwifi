@@ -46,21 +46,12 @@ sudo curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubuserconte
 sudo chmod a+x /usr/bin/ss-iptable
 sudo /usr/bin/ss-iptable
 
-if [ ! -f /etc/rc.local ]; then
-  sudo touch /etc/rc.local
-  sudo chmod a+x /etc/rc.local
-fi
+cd /etc/systemd/system/
+sudo curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.com/orzroa/highwifi/master/vr/thinPC/ss-iptable.service
 
-if [ `grep ss-iptable /etc/rc.local|wc -l` -eq 0 ]; then
-  if [ `grep exit /etc/rc.local|wc -l` -eq 0 ]; then
-    sudo sh -c "echo ''>>/etc/rc.local"
-    sudo sh -c "echo '/usr/bin/ss-iptable'>>/etc/rc.local"
-  else
-    sudo sh -c "sed -i 's/exit/\/usr\/bin\/ss-iptable\nexit/g' /etc/rc.local"
-  fi
-  echo "ss-iptables added into rc.local"
-fi
-cat /etc/rc.local
+sudo systemctl enable ss-iptable.service
+sudo systemctl restart ss-iptable.service
+sudo systemctl status ss-iptable.service
 
 curl google.com
 
