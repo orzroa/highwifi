@@ -1,6 +1,6 @@
 ####################
 # redsocks
-sudo apt install redsocks -y
+sudo apt install redsocks net-tools -y
 cd /etc/
 sudo curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.com/orzroa/highwifi/master/vr/thinPC/redsocks.conf
 
@@ -17,6 +17,9 @@ sudo ipset list
 
 ####################
 # dnsmasq
+sudo sh -c "echo 'DNSStubListener=no'>>/etc/systemd/resolved.conf
+sudo systemctl restart systemd-resolved
+
 sudo apt install dnsmasq curl -y
 cd /etc/dnsmasq.d/
 sudo curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.com/orzroa/gfwlist2dnsmasq/master/{dnsmasq_gfwlist_ipset.conf}
@@ -32,7 +35,7 @@ sudo systemctl status dnsmasq
 
 sudo sed -i 's/\[main\]/\[main\]\ndns=none/g' /etc/NetworkManager/NetworkManager.conf
 sudo sed -i 's/nameserver/#nameserver/g' /etc/resolv.conf
-sudo echo 'nameserver 127.0.0.1'>>/etc/resolv.conf
+sudo sh -c "echo 'nameserver 127.0.0.1'>>/etc/resolv.conf"
 sudo systemctl restart NetworkManager.service
 
 ####################
