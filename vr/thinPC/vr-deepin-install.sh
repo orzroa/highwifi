@@ -17,9 +17,6 @@ sudo ipset list
 
 ####################
 # dnsmasq
-sudo sh -c "echo 'DNSStubListener=no'>>/etc/systemd/resolved.conf
-sudo systemctl restart systemd-resolved
-
 sudo apt install dnsmasq curl -y
 cd /etc/dnsmasq.d/
 sudo curl -x 192.168.60.95:8118 -L --remote-name-all https://raw.githubusercontent.com/orzroa/gfwlist2dnsmasq/master/{dnsmasq_gfwlist_ipset.conf}
@@ -28,6 +25,10 @@ sudo sh -c "cat>>/etc/dnsmasq.conf<<EOF
 server=192.168.60.95
 listen-address=127.0.0.1
 EOF"
+
+# should after dnsmasq is installed
+sudo sh -c "echo 'DNSStubListener=no'>>/etc/systemd/resolved.conf"
+sudo systemctl restart systemd-resolved
 
 sudo systemctl enable dnsmasq
 sudo systemctl restart dnsmasq
